@@ -1,38 +1,259 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 600;
+}
+.webpage {
+  overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Hide scrollbar for Chrome, Safari, and Opera */
+.webpage::-webkit-scrollbar {
+  display: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Hide scrollbar for IE, Edge, and Firefox */
+.webpage {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+.body{
+  height: 50vh;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  width: 100%;
+  transition: background-image 0.5s ease-in-out, background-color 1s ease-in-out;
+}
+
+.webpage {
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  overflow-y: scroll;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 26rem;
+}
+
+.title {
+  color: white;
+  text-align: left;
+  font-size: 2.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 13rem;
+  align-items: center;
+  padding-right: 1rem;
+}
+
+.top span {
+  margin-top: 0rem;
+  cursor: pointer;
+}
+
+.input_holder {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: small;
+}
+
+input {
+  width: 20rem;
+  border-radius: 10px;
+}
+
+.input-field,
+button {
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+}
+
+input::placeholder {
+  opacity: 0.5;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.list {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+
+.toDo {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  border-radius: 10px;
+  /* flex-wrap: wrap; */
+}
+
+.toDo i {
+  margin-left: 0.8rem;
+  cursor: pointer;
+}
+
+.toDo .left {
+  align-items: center;
+  font-size: 15px;
+  gap: 10px;
+  width: 80%;
+}
+
+.left p {
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: unset;
+  margin: 0.1rem 0 0 0;
+}
+
+.left p::selection {
+  background-color: black;
+}
+
+.checkbox {
+  margin-left: -1.7rem !important;
+  width: 17px;
+  height: 17px;
+  border-radius: 200% !important;
+  cursor: pointer;
+}
+
+.toDo.editing .checkbox {
+  width: 23px; 
+  height: 17px;
+}
+
+.toDo.checked {
+  text-decoration: line-through;
+}
+
+.toDo.checked p {
+  opacity: 0.6;
+}
+
+.editing-field{
+  background-color: transparent !important;
+  outline: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  margin-top: 0.3px;
+  align-self: center;
+}
+
+.toDo {
+  transition: transform 0.2s ease-in-out;
+}
+
+.toDo.editing {
+  transform: scale(1.15);
+}
+
+/* ---------------------- Light mode styles ----------------------- */
+
+
+.body[data-mode='light'] input,
+.body[data-mode='light'] button {
+  background-color: lightblue;
+  color: black;
+}
+
+.body[data-mode='light'] input::placeholder {
+  color: black;
+}
+
+.body[data-mode='light'] input::selection {
+  background-color: white;
+}
+
+.body[data-mode='light'] button:hover {
+  background-color: rgb(171, 171, 235);
+}
+
+.body[data-mode='light'] .toDo {
+  background-color: rgb(119, 196, 231);
+  color: black;
+}
+
+.body[data-mode='light'] .left .checkbox {
+  background-color: rgb(11, 110, 156);
+}
+
+.body[data-mode='light'] i:hover {
+  color: #ffffff;
+}
+
+.body[data-mode='light'] .body{
+  background-color: #dbfcfd;
+}
+
+/* --------------------------- Dark mode styles -------------------------------*/
+
+.body[data-mode='dark'] .body{
+  background-color: #0d0c38;
+}
+
+.body[data-mode='dark'] input,
+.body[data-mode='dark'] button {
+  background-color: #535775;
+  color: #fff;
+}
+
+.body[data-mode='dark'] input::placeholder {
+  color: #fff;
+  opacity: 0.6;
+}
+
+.body[data-mode='dark'] button:hover {
+  background-color: purple;
+}
+
+.body[data-mode='dark'] input::selection {
+  background-color: black;
+}
+
+.body[data-mode='dark'] .toDo {
+  background-color: #60679b;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.body[data-mode='dark'] i:hover {
+  color: #000;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+@media only screen and (max-width: 324px) {
+  .input_holder{
+    flex-wrap: wrap;
   }
-  to {
-    transform: rotate(360deg);
+
+  .input_holder button{
+    width: 80%;
   }
 }
+
+
