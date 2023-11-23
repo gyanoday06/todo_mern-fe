@@ -21,7 +21,7 @@
 
 
 .body{
-  height: 50vh;
+  height: 380px;
   background-size: cover;
   background-position: center;
   position: fixed;
@@ -54,7 +54,7 @@
 .top {
   display: flex;
   justify-content: space-between;
-  margin-top: 13rem;
+  margin-top: 13.2rem;
   align-items: center;
   padding-right: 1rem;
 }
@@ -252,7 +252,17 @@ button:hover {
   }
 
   .input_holder button{
-    width: 80%;
+    width: 90%;
+  }
+
+  .body{
+    background-size: 400% 200%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .body{
+    background-size: 300% 200%;
   }
 }
 
