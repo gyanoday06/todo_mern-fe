@@ -22,7 +22,8 @@ const TodoList = (props) => {
       .delete(`${baseURL}/delete/${props.id}`)
       .then((res) => {
         console.log(res.data);
-        props.setupdateUI((prevState) => !prevState);
+        props.setUpdateUI((prevState) => !prevState);
+        console.log("done del")
       })
       .catch((err) => console.log(err));
   };
