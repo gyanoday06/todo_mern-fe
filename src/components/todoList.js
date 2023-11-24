@@ -13,7 +13,6 @@ const TodoList = (props) => {
   useEffect(() => {
     if (isEditing) {
       inputRef.current.focus();
-      inputRef.current.setSelectionRange(editedText.length, editedText.length);
     }
   }, [isEditing, editedText.length]);
 
