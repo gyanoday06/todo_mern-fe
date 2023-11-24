@@ -6,8 +6,8 @@ import { baseURL } from "./utils/constant"
 
 import TodoList from "./components/todoList"
 
-import darkBackground from './assets/dark-background.jpg';
-import lightBackground from './assets/light-background.jpg';
+import darkBackground from './assets/dark-background-min.jpg';
+import lightBackground from './assets/light-background-min.jpg';
 
 import './App.css';
 
