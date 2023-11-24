@@ -70,7 +70,7 @@ const App = () => {
                 placeholder='Add a Task...'
                 value={input}
                 onChange={(e) => {
-                  if (e.target.value.length <= 40) {
+                  if (e.target.value.length <= 200) {
                     setInput(e.target.value);
                   }
                 }}
