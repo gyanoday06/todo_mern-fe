@@ -19,6 +19,28 @@
   scrollbar-width: none; /* Firefox */
 }
 
+.editing-field::-webkit-scrollbar {
+  width: 5px; 
+}
+
+/* Track */
+.editing-field::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+/* Handle */
+.editing-field::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+.editing-field::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+
 
 .body{
   height: 380px;
@@ -101,33 +123,39 @@ button:hover {
 }
 
 .toDo {
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
-  /* flex-wrap: wrap; */
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  opacity: 1;
+  transform-origin: top;
 }
 
-.toDo i {
-  margin-left: 0.8rem;
-  cursor: pointer;
+.toDo.slide-up {
+  transform: translateY(-20px);
+  opacity: 0;
 }
 
 .toDo .left {
-  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
   font-size: 15px;
   gap: 10px;
-  width: 80%;
+  width: 83%;
 }
 
 .left p {
+  text-align: left !important;
+  width: 95%;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: unset;
-  margin: 0.1rem 0 0 0;
+  text-overflow: ellipsis;
+  margin: 0.03rem 0 0 0;
 }
+
 
 .left p::selection {
   background-color: black;
@@ -142,11 +170,10 @@ button:hover {
 }
 
 .toDo.editing .checkbox {
-  width: 23px; 
   height: 17px;
 }
 
-.toDo.checked {
+.toDo.checked p{
   text-decoration: line-through;
 }
 
@@ -163,15 +190,30 @@ button:hover {
   border-radius: 0;
   margin-top: 0.3px;
   align-self: center;
-}
-
-.toDo {
-  transition: transform 0.2s ease-in-out;
+  width: 100%;
+  color: white;
+  resize: none;
 }
 
 .toDo.editing {
   transform: scale(1.15);
+  transition: transform 0.2s ease-in-out;
 }
+
+.right-icons{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
+.rightex--icons{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
 
 /* ---------------------- Light mode styles ----------------------- */
 

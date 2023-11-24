@@ -14,32 +14,33 @@ import './App.css';
 const App = () => {
   const [mode, setMode] = useState("dark");
   const [todo, setTodo] = useState([]);
-  const [input, setInput] = useState("")
-  const [updateUI, setupdateUI] = useState(false)
+  const [input, setInput] = useState("");
+  const [updateUI, setUpdateUI] = useState(false);
 
   function changeMode() {
     setMode(mode === 'dark' ? 'light' : 'dark');
   }
+
   const backgroundImage = mode === 'dark' ? `url(${darkBackground})` : `url(${lightBackground})`;
 
-  // To fetch the data from MONGODB
+  // To fetch the data from MongoDB
   useEffect(() => {
     axios
       .get(`${baseURL}/get`)
       .then((res) => setTodo(res.data))
       .catch((err) => console.log(err));
   }, [updateUI]);
-  
+
   const saveToDo = () => {
     axios
-    .post(`${baseURL}/save`, {toDo: input})
-    .then((res) => {
-      console.log(res.data);
-      setupdateUI((prevState) => !prevState)
-      setInput("");
-    })
-    .catch((err) => console.log(err));
-  }
+      .post(`${baseURL}/save`, { toDo: input })
+      .then((res) => {
+        console.log(res.data);
+        setUpdateUI((prevState) => !prevState);
+        setInput("");
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className='background' style={{
@@ -54,43 +55,46 @@ const App = () => {
         transition: 'background-image 0.4s ease-in-out',
       }}>
 
-      <main className='webpage' >
-        <div className='container'>
-          <div className='top'>
-            <h1 className='title'>T O D O</h1>
-            <span className="material-symbols-outlined" onClick={changeMode}>
-              {mode === 'dark' ? 'light_mode' : 'dark_mode'}
-            </span>
-          </div>
-          <div className="input_holder">
-            <input
-              className='input-field'
-              type="text"
-              placeholder='Add a Task...'
-              value={input}
-              onChange={(e) => {
-                if (e.target.value.length <= 40) {
-                  setInput(e.target.value);
+        <main className='webpage' >
+          <div className='container'>
+            <div className='top'>
+              <h1 className='title'>T O D O</h1>
+              <span className="material-symbols-outlined" onClick={changeMode}>
+                {mode === 'dark' ? 'light_mode' : 'dark_mode'}
+              </span>
+            </div>
+            <div className="input_holder">
+              <input
+                className='input-field'
+                type="text"
+                placeholder='Add a Task...'
+                value={input}
+                onChange={(e) => {
+                  if (e.target.value.length <= 40) {
+                    setInput(e.target.value);
                   }
                 }}
-            />
-            <button onClick={saveToDo}>Add</button>
+              />
+              <button onClick={saveToDo}>Add</button>
+            </div>
+            <div className="list">
+              {
+                todo.map(ele => (
+                  <TodoList
+                    key={ele._id}
+                    id={ele._id}
+                    text={ele.toDo}
+                    isChecked={ele.isChecked}
+                    setUpdateUI={setUpdateUI}
+                  />
+                ))
+              }
+            </div>
           </div>
-          <div className="list">
-            { 
-              todo.map(ele => <TodoList 
-                                key={ele._id} 
-                                id={ele._id} 
-                                text={ele.toDo}
-                                setupdateUI={setupdateUI}
-                              />)
-            }
-          </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
-    </div>
-  )
+  );
 }
 
 export default App;
